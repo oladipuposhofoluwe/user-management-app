@@ -1,0 +1,11 @@
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/bin/Debug/net8.0/UserManagement.Domain.deps.json
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/bin/Debug/net8.0/UserManagement.Domain.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/bin/Debug/net8.0/UserManagement.Domain.pdb
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.AssemblyInfoInputs.cache
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.AssemblyInfo.cs
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.csproj.CoreCompileInputs.cache
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/refint/UserManagement.Domain.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/UserManagement.Domain.pdb
+/Users/laptop/Desktop/user_management_app/UserManagement.Domain/obj/Debug/net8.0/ref/UserManagement.Domain.dll
