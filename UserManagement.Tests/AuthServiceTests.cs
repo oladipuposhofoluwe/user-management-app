@@ -66,7 +66,7 @@ public class AuthServiceTests
 
         Func<Task> act = async () => await _authService.LoginAsync(request);
 
-        await act.Should().ThrowAsync<UnauthorizedAccessException>()
+        await act.Should().ThrowAsync<UnauthorizedException>()
             .WithMessage("Invalid credentials.");
     }
 
@@ -91,7 +91,7 @@ public class AuthServiceTests
 
         Func<Task> act = async () => await _authService.LoginAsync(request);
 
-        await act.Should().ThrowAsync<UnauthorizedAccessException>()
+        await act.Should().ThrowAsync<UnauthorizedException>()
             .WithMessage("Invalid credentials.");
     }
 }
