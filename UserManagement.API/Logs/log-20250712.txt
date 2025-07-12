@@ -1,0 +1,201 @@
+2025-07-12 12:59:05.460 +01:00 [INF] User Management Application is starting up
+2025-07-12 12:59:07.175 +01:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 12:59:07.219 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 12:59:07.255 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-12 12:59:07.273 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-12 12:59:07.524 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-12 12:59:07.652 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-12 12:59:07.716 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-12 12:59:07.724 +01:00 [INF] Starting Hangfire Server using job storage: 'Hangfire.MemoryStorage.MemoryStorage'
+2025-07-12 12:59:07.725 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-12 12:59:07.740 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-12 12:59:07.741 +01:00 [INF] Hosting environment: Development
+2025-07-12 12:59:07.741 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-12 12:59:07.834 +01:00 [INF] Server news-macbook-pro:15772:99514a55 successfully announced in 93.1 ms
+2025-07-12 12:59:07.836 +01:00 [INF] Server news-macbook-pro:15772:99514a55 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-12 12:59:07.841 +01:00 [INF] Server news-macbook-pro:15772:99514a55 all the dispatchers started
+2025-07-12 13:05:01.623 +01:00 [INF] Server news-macbook-pro:15772:99514a55 caught stopping signal...
+2025-07-12 13:05:01.627 +01:00 [INF] Application is shutting down...
+2025-07-12 13:05:01.630 +01:00 [INF] Server news-macbook-pro:15772:99514a55 All dispatchers stopped
+2025-07-12 13:05:01.633 +01:00 [INF] Server news-macbook-pro:15772:99514a55 successfully reported itself as stopped in 0.5883 ms
+2025-07-12 13:05:01.633 +01:00 [INF] Server news-macbook-pro:15772:99514a55 has been stopped in total 7.7342 ms
+2025-07-12 13:10:33.420 +01:00 [INF] User Management Application is starting up
+2025-07-12 13:10:34.834 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:10:34.876 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:10:34.909 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-12 13:10:34.929 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-12 13:10:35.184 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-12 13:10:35.299 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-12 13:10:35.374 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-12 13:10:35.382 +01:00 [INF] Starting Hangfire Server using job storage: 'Hangfire.MemoryStorage.MemoryStorage'
+2025-07-12 13:10:35.383 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-12 13:10:35.403 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-12 13:10:35.404 +01:00 [INF] Hosting environment: Development
+2025-07-12 13:10:35.404 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-12 13:10:35.499 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f successfully announced in 94.5573 ms
+2025-07-12 13:10:35.502 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-12 13:10:35.508 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f all the dispatchers started
+2025-07-12 13:22:53.527 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f caught stopping signal...
+2025-07-12 13:22:53.529 +01:00 [INF] Application is shutting down...
+2025-07-12 13:22:53.533 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f All dispatchers stopped
+2025-07-12 13:22:53.536 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f successfully reported itself as stopped in 0.9208 ms
+2025-07-12 13:22:53.536 +01:00 [INF] Server news-macbook-pro:16395:ddfaa12f has been stopped in total 8.2742 ms
+2025-07-12 13:32:10.040 +01:00 [INF] User Management Application is starting up
+2025-07-12 13:32:11.696 +01:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:32:11.742 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:32:11.773 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-12 13:32:11.791 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-12 13:32:12.038 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-12 13:32:12.155 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-07-12 13:32:12.640 +01:00 [INF] Hangfire SQL objects installed.
+2025-07-12 13:32:12.747 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-12 13:32:12.813 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-12 13:32:12.820 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-12 13:32:12.820 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-12 13:32:12.821 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-12 13:32:12.821 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-12 13:32:12.840 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-12 13:32:12.841 +01:00 [INF] Hosting environment: Development
+2025-07-12 13:32:12.841 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-12 13:32:13.064 +01:00 [INF] Server news-macbook-pro:17725:c505662c successfully announced in 222.9911 ms
+2025-07-12 13:32:13.067 +01:00 [INF] Server news-macbook-pro:17725:c505662c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-12 13:32:13.078 +01:00 [INF] Server news-macbook-pro:17725:c505662c all the dispatchers started
+2025-07-12 13:32:56.302 +01:00 [INF] Server news-macbook-pro:17725:c505662c caught stopping signal...
+2025-07-12 13:32:56.303 +01:00 [INF] Application is shutting down...
+2025-07-12 13:32:56.305 +01:00 [INF] Server news-macbook-pro:17725:c505662c All dispatchers stopped
+2025-07-12 13:32:56.311 +01:00 [INF] Server news-macbook-pro:17725:c505662c successfully reported itself as stopped in 3.996 ms
+2025-07-12 13:32:56.311 +01:00 [INF] Server news-macbook-pro:17725:c505662c has been stopped in total 9.0681 ms
+2025-07-12 13:33:01.747 +01:00 [INF] User Management Application is starting up
+2025-07-12 13:33:02.923 +01:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:33:02.961 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-12 13:33:02.992 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-12 13:33:03.011 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-12 13:33:03.242 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-12 13:33:03.315 +01:00 [INF] DB tables already exist. Exit install
+2025-07-12 13:33:03.413 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-12 13:33:03.470 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-12 13:33:03.477 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-12 13:33:03.478 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-12 13:33:03.478 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-12 13:33:03.478 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-12 13:33:03.492 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-12 13:33:03.493 +01:00 [INF] Hosting environment: Development
+2025-07-12 13:33:03.493 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-12 13:33:03.620 +01:00 [INF] Server news-macbook-pro:17783:2d076671 successfully announced in 126.9476 ms
+2025-07-12 13:33:03.623 +01:00 [INF] Server news-macbook-pro:17783:2d076671 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-12 13:33:03.629 +01:00 [INF] Server news-macbook-pro:17783:2d076671 all the dispatchers started
+2025-07-12 13:33:39.500 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/ - null null
+2025-07-12 13:33:39.545 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-12 13:33:39.644 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/ - 404 0 null 144.0079ms
+2025-07-12 13:33:39.647 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5104/, Response status code: 404
+2025-07-12 13:33:46.093 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/swagger/index.html - null null
+2025-07-12 13:33:46.225 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/swagger/index.html - 200 null text/html;charset=utf-8 131.8679ms
+2025-07-12 13:33:46.834 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/swagger/v1/swagger.json - null null
+2025-07-12 13:33:46.980 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 146.2607ms
+2025-07-12 13:34:04.380 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire - null null
+2025-07-12 13:34:04.488 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire - 200 null text/html 107.1314ms
+2025-07-12 13:34:04.528 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200251867663 - null null
+2025-07-12 13:34:04.529 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css18200735438500 - null null
+2025-07-12 13:34:04.533 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/js182001994562692 - null null
+2025-07-12 13:34:04.541 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200251867663 - 200 null text/css 12.3794ms
+2025-07-12 13:34:04.559 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css18200735438500 - 200 null text/css 30.2855ms
+2025-07-12 13:34:04.559 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/js182001994562692 - 200 null application/javascript 25.6364ms
+2025-07-12 13:34:04.597 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/fonts/glyphicons-halflings-regular/woff2 - null null
+2025-07-12 13:34:04.599 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/fonts/glyphicons-halflings-regular/woff2 - 200 null font/woff2 1.7969ms
+2025-07-12 13:34:06.674 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:06.703 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 28.8071ms
+2025-07-12 13:34:08.711 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:08.720 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 8.3175ms
+2025-07-12 13:34:10.725 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:10.732 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.3151ms
+2025-07-12 13:34:13.140 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:13.147 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.9816ms
+2025-07-12 13:34:16.137 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:16.145 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 8.4197ms
+2025-07-12 13:34:18.151 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:18.159 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 8.6048ms
+2025-07-12 13:34:21.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:21.146 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 10.9118ms
+2025-07-12 13:34:24.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:24.142 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 8.4264ms
+2025-07-12 13:34:27.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:27.140 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 4.8524ms
+2025-07-12 13:34:30.137 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:30.143 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.9636ms
+2025-07-12 13:34:33.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:33.142 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.0268ms
+2025-07-12 13:34:36.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:36.142 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.76ms
+2025-07-12 13:34:39.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:39.141 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.6278ms
+2025-07-12 13:34:42.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:42.141 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.3906ms
+2025-07-12 13:34:45.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:45.139 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 4.5328ms
+2025-07-12 13:34:48.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:48.139 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.0245ms
+2025-07-12 13:34:51.135 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:51.142 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.3469ms
+2025-07-12 13:34:54.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:54.140 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.1672ms
+2025-07-12 13:34:57.134 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:34:57.139 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 4.4769ms
+2025-07-12 13:35:00.133 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 258
+2025-07-12 13:35:00.141 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.2886ms
+2025-07-12 13:35:01.181 +01:00 [INF] Server news-macbook-pro:17783:2d076671 caught stopping signal...
+2025-07-12 13:35:01.182 +01:00 [INF] Application is shutting down...
+2025-07-12 13:35:01.185 +01:00 [INF] Server news-macbook-pro:17783:2d076671 All dispatchers stopped
+2025-07-12 13:35:01.191 +01:00 [INF] Server news-macbook-pro:17783:2d076671 successfully reported itself as stopped in 3.9856 ms
+2025-07-12 13:35:01.191 +01:00 [INF] Server news-macbook-pro:17783:2d076671 has been stopped in total 9.2583 ms

@@ -20,6 +20,9 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/laptop/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <Pkglinq2db_t4models Condition=" '$(Pkglinq2db_t4models)' == '' ">/Users/laptop/.nuget/packages/linq2db.t4models/0.0.1</Pkglinq2db_t4models>
+    <Pkglinq2db_MySql Condition=" '$(Pkglinq2db_MySql)' == '' ">/Users/laptop/.nuget/packages/linq2db.mysql/1.0.7.3</Pkglinq2db_MySql>
+    <PkgHangfire_SqlServer Condition=" '$(PkgHangfire_SqlServer)' == '' ">/Users/laptop/.nuget/packages/hangfire.sqlserver/1.8.20</PkgHangfire_SqlServer>
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">/Users/laptop/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5</PkgMicrosoft_Extensions_ApiDescription_Server>
   </PropertyGroup>
 </Project>

@@ -4,21 +4,58 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using UserManagement.Infrastructure.Persistence;
 using UserManagement.Infrastructure.Services;
-using Microsoft.AspNetCore.Identity;
 using UserManagement.Application.Interfaces.Services;
+using Serilog;
+using Hangfire;
+using Hangfire.MemoryStorage;
+using UserManagement.Domain.Entities;
+using Hangfire.MySql;
 
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+try
+{
+    Log.Information("User Management Application is starting up");
+
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseSerilog();
+
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+            ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        ));
+
+    // builder.Services.AddHangfire(config => config.UseMemoryStorage());
+
+    builder.Services.AddScoped<IBackgroundJobService, BackgroundJobService>();
+
+   builder.Services.AddHangfire(config =>
+    {
+        config
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseStorage(new MySqlStorage(
+                builder.Configuration.GetConnectionString("DefaultConnection"),
+                new MySqlStorageOptions
+                {
+                    TablesPrefix = "Hangfire",
+                    QueuePollInterval = TimeSpan.FromSeconds(15)
+                }));
+    });
 
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
-    ));
-
+    builder.Services.AddHangfireServer();
 
     builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+    builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
 
     builder.Services.AddAuthentication(options =>
     {
@@ -41,46 +78,58 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         };
     });
 
-builder.Services.AddControllers();
+    builder.Services.AddControllers();
+    builder.Services.AddScoped<IEmailService, EmailService>();
+    builder.Services.AddDbContext<AppDbContext>();
+    builder.Services.AddSwaggerGen();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddAuthentication();
+    builder.Services.AddAuthorization();
+    builder.Services.AddScoped<IPasswordHash, PasswordHash>();
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
-builder.Services.AddScoped<IPasswordHash, PasswordHash>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IUserService, UserService>();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddAuthorization();
+    builder.Services.AddAuthorization();
 
-var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+    var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbSeeder = new DbSeeder(scope.ServiceProvider.GetRequiredService<AppDbContext>());
+        await dbSeeder.SeedAsync();
+    }
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.UseHangfireDashboard();
+    app.UseHangfireDashboard("/hangfire");
+
+
+    app.MapControllers();
+
+    app.Run();
+}catch (Exception ex)
 {
-    var dbSeeder = new DbSeeder(scope.ServiceProvider.GetRequiredService<AppDbContext>());
-    await dbSeeder.SeedAsync();
+    Log.Fatal(ex, "User Management Application start-up failed");
 }
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-
-if (app.Environment.IsDevelopment())
+finally
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    Log.CloseAndFlush();
 }
-
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
