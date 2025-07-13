@@ -19,6 +19,8 @@
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Humanizer.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/linq2db.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -53,6 +55,7 @@
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/MySql.Data.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/MySqlConnector.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Owin.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Pomelo.EntityFrameworkCore.MySql.dll
 /Users/laptop/Desktop/user_management_app/UserManagement.API/bin/Debug/net8.0/Serilog.dll

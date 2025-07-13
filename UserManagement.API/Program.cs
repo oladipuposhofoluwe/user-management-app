@@ -11,6 +11,9 @@ using UserManagement.Domain.Entities;
 using Hangfire.MySql;
 using Infrastructure.Messaging;
 using Domain.Interfaces;
+using Hangfire.MemoryStorage;
+using Application.Common.Interfaces;
+using System.Text.Json.Serialization;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -19,7 +22,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
 try
 {
     Log.Information("User Management Application is starting up");
@@ -33,23 +35,23 @@ try
             ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
         ));
 
-    // builder.Services.AddHangfire(config => config.UseMemoryStorage());
+    builder.Services.AddHangfire(config => config.UseMemoryStorage());
 
     builder.Services.AddScoped<IBackgroundJobService, BackgroundJobService>();
 
-   builder.Services.AddHangfire(config =>
-    {
-        config
-            .UseSimpleAssemblyNameTypeSerializer()
-            .UseRecommendedSerializerSettings()
-            .UseStorage(new MySqlStorage(
-                builder.Configuration.GetConnectionString("DefaultConnection"),
-                new MySqlStorageOptions
-                {
-                    TablesPrefix = "Hangfire",
-                    QueuePollInterval = TimeSpan.FromSeconds(15)
-                }));
-    });
+    builder.Services.AddHangfire(config =>
+     {
+         config
+             .UseSimpleAssemblyNameTypeSerializer()
+             .UseRecommendedSerializerSettings()
+             .UseStorage(new MySqlStorage(
+                 builder.Configuration.GetConnectionString("DefaultConnection"),
+                 new MySqlStorageOptions
+                 {
+                     TablesPrefix = "Hangfire",
+                     QueuePollInterval = TimeSpan.FromSeconds(15)
+                 }));
+     });
 
 
     builder.Services.AddHangfireServer();
@@ -79,7 +81,13 @@ try
         };
     });
 
-    builder.Services.AddControllers();
+    builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+
+    });
+    builder.Services.AddHttpContextAccessor();
     builder.Services.AddScoped<IEmailService, EmailService>();
     builder.Services.AddDbContext<AppDbContext>();
     builder.Services.AddSwaggerGen();
@@ -88,9 +96,12 @@ try
     builder.Services.AddAuthorization();
     builder.Services.AddScoped<IPasswordHash, PasswordHash>();
     builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<IKafkaProducer, MockKafkaProducer>();
+    builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+    builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
 
 
@@ -119,12 +130,8 @@ try
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
-    app.UseHangfireDashboard();
     app.UseHangfireDashboard("/hangfire");
     app.UseHangfireServer();
-
-
-
     app.MapControllers();
 
     app.Run();

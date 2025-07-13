@@ -1,12 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UserManagement.Application.Common.Models.Auth;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using UserManagement.Domain.Entities;
-using UserManagement.Infrastructure.Services;
+using UserManagement.Application.Common.Models;
+using Application.Common.Interfaces;
 
 namespace UserManagement.API.Controllers
 {
@@ -16,11 +11,14 @@ namespace UserManagement.API.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
+        private readonly ICurrentUserService _currentUserService;
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+
+        public AuthController(IAuthService authService, ILogger<AuthController> logger, ICurrentUserService currentUserService)
         {
             _authService = authService;
             _logger = logger;
+            _currentUserService = currentUserService;
         }
 
         [HttpPost("login")]
@@ -30,12 +28,35 @@ namespace UserManagement.API.Controllers
 
             var response = await _authService.LoginAsync(request);
             if (response == null)
-            { 
+            {
                 _logger.LogWarning("Failed login attempt for {Email}, Invalid email or password", request.Email);
                 throw new UnauthorizedException("Invalid email or password.");
             }
             _logger.LogInformation("User {Email} logged in successfully", response.Email);
             return Ok(response);
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+        {
+            var response = await _authService.RefreshTokenAsync(request.RefreshToken);
+            return Ok(response);
+        }
+    
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            if (_currentUserService.UserId is null)
+            {
+                throw new UnauthorizedException("Unauthorized");
+            }
+
+            var userId = _currentUserService.UserId.Value;
+
+            await _authService.RevokeAllTokensForUserAsync(userId);
+
+            return Ok(new { message = "Logged out successfully." });
         }
 
     }
