@@ -2602,3 +2602,1334 @@ VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
 2025-07-13 05:16:48.961 +01:00 [INF] Server news-macbook-pro:38420:cb64fd17 successfully reported itself as stopped in 4.3839 ms
 2025-07-13 05:16:48.961 +01:00 [INF] Server news-macbook-pro:38420:b483e3a3 has been stopped in total 11.059 ms
 2025-07-13 05:16:48.961 +01:00 [INF] Server news-macbook-pro:38420:cb64fd17 has been stopped in total 12.3075 ms
+2025-07-13 05:30:58.771 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:31:00.303 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:31:00.341 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:31:00.373 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:31:00.397 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:31:00.667 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:31:01.172 +01:00 [ERR] Failed executing DbCommand (43ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 100), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `Users` (`Id`, `CreatedAt`, `Email`, `FirstName`, `IsDeleted`, `LastName`, `PasswordHash`, `PhoneNumber`, `Role`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-07-13 05:31:01.205 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'UserManagement.Infrastructure.Persistence.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-07-13 05:31:01.212 +01:00 [FTL] User Management Application start-up failed
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at DbSeeder.SeedAsync() in /Users/laptop/Desktop/user_management_app/UserManagement.Infrastructure/Data/DbSeeder.cs:line 36
+   at Program.<Main>$(String[] args) in /Users/laptop/Desktop/user_management_app/UserManagement.API/Program.cs:line 109
+2025-07-13 05:32:08.886 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:32:10.644 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:32:10.685 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:32:10.716 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:32:10.736 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:32:10.971 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:32:11.488 +01:00 [ERR] Failed executing DbCommand (34ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 100), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `Users` (`Id`, `CreatedAt`, `Email`, `FirstName`, `IsDeleted`, `LastName`, `PasswordHash`, `PhoneNumber`, `Role`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-07-13 05:32:11.517 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'UserManagement.Infrastructure.Persistence.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-07-13 05:32:11.523 +01:00 [FTL] User Management Application start-up failed
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at DbSeeder.SeedAsync() in /Users/laptop/Desktop/user_management_app/UserManagement.Infrastructure/Data/DbSeeder.cs:line 36
+   at Program.<Main>$(String[] args) in /Users/laptop/Desktop/user_management_app/UserManagement.API/Program.cs:line 109
+2025-07-13 05:35:11.904 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:35:13.383 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:35:13.418 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:35:13.449 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:35:13.468 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:35:13.704 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:35:14.191 +01:00 [ERR] Failed executing DbCommand (33ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 100), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `Users` (`Id`, `CreatedAt`, `Email`, `FirstName`, `IsDeleted`, `LastName`, `PasswordHash`, `PhoneNumber`, `Role`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-07-13 05:35:14.218 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'UserManagement.Infrastructure.Persistence.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-07-13 05:35:14.224 +01:00 [FTL] User Management Application start-up failed
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at DbSeeder.SeedAsync() in /Users/laptop/Desktop/user_management_app/UserManagement.Infrastructure/Data/DbSeeder.cs:line 40
+   at Program.<Main>$(String[] args) in /Users/laptop/Desktop/user_management_app/UserManagement.API/Program.cs:line 109
+2025-07-13 05:35:57.177 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:35:58.501 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:35:58.546 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:35:58.583 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:35:58.602 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:35:58.884 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:35:59.368 +01:00 [ERR] Failed executing DbCommand (32ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 100), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `Users` (`Id`, `CreatedAt`, `Email`, `FirstName`, `IsDeleted`, `LastName`, `PasswordHash`, `PhoneNumber`, `Role`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-07-13 05:35:59.395 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'UserManagement.Infrastructure.Persistence.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-07-13 05:35:59.401 +01:00 [FTL] User Management Application start-up failed
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry 'oladipupo.shofoluwe@gmail.com' for key 'users.IX_Users_Email'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at DbSeeder.SeedAsync() in /Users/laptop/Desktop/user_management_app/UserManagement.Infrastructure/Data/DbSeeder.cs:line 40
+   at Program.<Main>$(String[] args) in /Users/laptop/Desktop/user_management_app/UserManagement.API/Program.cs:line 109
+2025-07-13 05:40:33.114 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:40:34.404 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:40:34.446 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:40:34.474 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:40:34.493 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:40:34.726 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:40:35.190 +01:00 [INF] Executed DbCommand (32ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 100), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `Users` (`Id`, `CreatedAt`, `Email`, `FirstName`, `IsDeleted`, `LastName`, `PasswordHash`, `PhoneNumber`, `Role`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-07-13 05:40:35.276 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:40:35.303 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:40:35.303 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:40:35.303 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:40:35.304 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:40:35.392 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:40:35.422 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed successfully announced in 103.7578 ms
+2025-07-13 05:40:35.425 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:40:35.430 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed all the dispatchers started
+2025-07-13 05:40:35.499 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:40:35.499 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:40:35.500 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:40:35.500 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:40:35.500 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:40:35.504 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:40:35.505 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:40:35.505 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:40:35.630 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 successfully announced in 129.386 ms
+2025-07-13 05:40:35.630 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:40:35.638 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 all the dispatchers started
+2025-07-13 05:41:47.305 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 caught stopping signal...
+2025-07-13 05:41:47.307 +01:00 [INF] Application is shutting down...
+2025-07-13 05:41:47.307 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed caught stopping signal...
+2025-07-13 05:41:47.310 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed All dispatchers stopped
+2025-07-13 05:41:47.310 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 All dispatchers stopped
+2025-07-13 05:41:47.317 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 successfully reported itself as stopped in 4.821 ms
+2025-07-13 05:41:47.317 +01:00 [INF] Server news-macbook-pro:40337:ca8bbbb3 has been stopped in total 10.5823 ms
+2025-07-13 05:41:47.318 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed successfully reported itself as stopped in 5.8224 ms
+2025-07-13 05:41:47.318 +01:00 [INF] Server news-macbook-pro:40337:7cd846ed has been stopped in total 10.1462 ms
+2025-07-13 05:41:51.413 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:41:52.726 +01:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:41:52.759 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:41:52.788 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:41:52.807 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:41:53.039 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:41:53.094 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:41:53.115 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:41:53.116 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:41:53.116 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:41:53.116 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:41:53.195 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:41:53.252 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:41:53.253 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:41:53.253 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:41:53.253 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:41:53.253 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:41:53.257 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:41:53.257 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:41:53.257 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:41:53.260 +01:00 [INF] Server news-macbook-pro:40437:6a462929 successfully announced in 128.3673 ms
+2025-07-13 05:41:53.263 +01:00 [INF] Server news-macbook-pro:40437:6a462929 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:41:53.269 +01:00 [INF] Server news-macbook-pro:40437:6a462929 all the dispatchers started
+2025-07-13 05:41:53.273 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd successfully announced in 19.3949 ms
+2025-07-13 05:41:53.285 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:41:53.360 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd all the dispatchers started
+2025-07-13 05:42:20.068 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - null null
+2025-07-13 05:42:20.111 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:42:20.150 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Staff)
+2025-07-13 05:42:20.154 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-13 05:42:20.159 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - 401 0 null 92.058ms
+2025-07-13 05:42:26.406 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/api/auth/login - application/json 75
+2025-07-13 05:42:26.506 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/25/2025 10:03:18 AM', Current time (UTC): '7/13/2025 4:42:26 AM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.InternalValidators.ValidateAfterSignatureFailed(SecurityToken securityToken, Nullable`1 notBefore, Nullable`1 expires, IEnumerable`1 audiences, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-07-13 05:42:26.540 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/25/2025 10:03:18 AM', Current time (UTC): '7/13/2025 4:42:26 AM'.
+2025-07-13 05:42:26.547 +01:00 [INF] Executing endpoint 'UserManagement.API.Controllers.AuthController.Login (UserManagement.API)'
+2025-07-13 05:42:26.601 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(UserManagement.Application.Common.Models.Auth.LoginRequest) on controller UserManagement.API.Controllers.AuthController (UserManagement.API).
+2025-07-13 05:42:26.768 +01:00 [INF] recieve request to process login {"Email":"oladipupo.shofoluwe@gmail.com","Password":"Admin@123","$type":"LoginRequest"}
+2025-07-13 05:42:26.771 +01:00 [INF] Processing authentication for oladipupo.shofoluwe@gmail.com
+2025-07-13 05:42:26.842 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE `u`.`Email` = @__email_0
+LIMIT 1
+2025-07-13 05:42:27.586 +01:00 [INF] user successfully login
+2025-07-13 05:42:27.587 +01:00 [INF] User oladipupo.shofoluwe@gmail.com logged in successfully
+2025-07-13 05:42:27.595 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.Auth.AuthResponse'.
+2025-07-13 05:42:27.639 +01:00 [INF] Executed action UserManagement.API.Controllers.AuthController.Login (UserManagement.API) in 1023.3ms
+2025-07-13 05:42:27.640 +01:00 [INF] Executed endpoint 'UserManagement.API.Controllers.AuthController.Login (UserManagement.API)'
+2025-07-13 05:42:27.648 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/api/auth/login - 200 null application/json; charset=utf-8 1242.2366ms
+2025-07-13 05:42:47.099 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - null null
+2025-07-13 05:42:47.119 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:42:47.131 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:42:47.290 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 158.4975ms
+2025-07-13 05:42:47.291 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:42:47.306 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - 500 null application/json 206.2954ms
+2025-07-13 05:43:08.182 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - null null
+2025-07-13 05:43:08.184 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:43:08.184 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:43:08.203 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 18.5541ms
+2025-07-13 05:43:08.203 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:43:08.204 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=John&role=Admin%20 - 500 null application/json 22.2157ms
+2025-07-13 05:44:51.205 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=Admin%20 - null null
+2025-07-13 05:44:51.205 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:44:51.206 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:44:51.229 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 22.9924ms
+2025-07-13 05:44:51.229 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:44:51.230 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=Admin%20 - 500 null application/json 24.9976ms
+2025-07-13 05:48:04.264 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd caught stopping signal...
+2025-07-13 05:48:04.266 +01:00 [INF] Application is shutting down...
+2025-07-13 05:48:04.266 +01:00 [INF] Server news-macbook-pro:40437:6a462929 caught stopping signal...
+2025-07-13 05:48:04.269 +01:00 [INF] Server news-macbook-pro:40437:6a462929 All dispatchers stopped
+2025-07-13 05:48:04.269 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd All dispatchers stopped
+2025-07-13 05:48:04.275 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd successfully reported itself as stopped in 3.6155 ms
+2025-07-13 05:48:04.275 +01:00 [INF] Server news-macbook-pro:40437:3e4e16cd has been stopped in total 9.6492 ms
+2025-07-13 05:48:04.276 +01:00 [INF] Server news-macbook-pro:40437:6a462929 successfully reported itself as stopped in 4.6284 ms
+2025-07-13 05:48:04.276 +01:00 [INF] Server news-macbook-pro:40437:6a462929 has been stopped in total 8.6975 ms
+2025-07-13 05:48:13.194 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:48:14.590 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:48:14.634 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:48:14.670 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:48:14.691 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:48:14.973 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:48:15.045 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:48:15.068 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:48:15.068 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:48:15.068 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:48:15.069 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:48:15.154 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:48:15.213 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:48:15.214 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:48:15.214 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:48:15.214 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:48:15.214 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:48:15.217 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:48:15.218 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:48:15.218 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:48:15.224 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f successfully announced in 138.7534 ms
+2025-07-13 05:48:15.227 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:48:15.231 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 successfully announced in 16.6645 ms
+2025-07-13 05:48:15.232 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:48:15.311 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f all the dispatchers started
+2025-07-13 05:48:15.338 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 all the dispatchers started
+2025-07-13 05:48:38.666 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 caught stopping signal...
+2025-07-13 05:48:38.669 +01:00 [INF] Application is shutting down...
+2025-07-13 05:48:38.669 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f caught stopping signal...
+2025-07-13 05:48:38.672 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f All dispatchers stopped
+2025-07-13 05:48:38.672 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 All dispatchers stopped
+2025-07-13 05:48:38.687 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 successfully reported itself as stopped in 12.3096 ms
+2025-07-13 05:48:38.687 +01:00 [INF] Server news-macbook-pro:40843:2e52cf02 has been stopped in total 18.6619 ms
+2025-07-13 05:48:38.688 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f successfully reported itself as stopped in 13.8499 ms
+2025-07-13 05:48:38.689 +01:00 [INF] Server news-macbook-pro:40843:b414cb4f has been stopped in total 19.0334 ms
+2025-07-13 05:48:44.394 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:48:45.691 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:48:45.723 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:48:45.761 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:48:45.781 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:48:46.039 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:48:46.098 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:48:46.122 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:48:46.122 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:48:46.122 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:48:46.123 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:48:46.221 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:48:46.300 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:48:46.301 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:48:46.301 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:48:46.301 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:48:46.301 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:48:46.306 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:48:46.307 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:48:46.308 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:48:46.312 +01:00 [INF] Server news-macbook-pro:40909:03aea40e successfully announced in 172.7296 ms
+2025-07-13 05:48:46.316 +01:00 [INF] Server news-macbook-pro:40909:03aea40e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:48:46.323 +01:00 [INF] Server news-macbook-pro:40909:942aa93e successfully announced in 21.3256 ms
+2025-07-13 05:48:46.324 +01:00 [INF] Server news-macbook-pro:40909:942aa93e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:48:46.326 +01:00 [INF] Server news-macbook-pro:40909:03aea40e all the dispatchers started
+2025-07-13 05:48:46.461 +01:00 [INF] Server news-macbook-pro:40909:942aa93e all the dispatchers started
+2025-07-13 05:48:53.678 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - null null
+2025-07-13 05:48:53.714 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:48:53.798 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:48:53.824 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:48:53.867 +01:00 [INF] recieve request to list users
+2025-07-13 05:48:53.868 +01:00 [INF] process find users
+2025-07-13 05:48:53.984 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__name_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+2025-07-13 05:48:54.031 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+ORDER BY `u`.`Email`
+LIMIT @__p_2 OFFSET @__p_1
+2025-07-13 05:48:54.104 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 05:48:54.205 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 377.2404ms
+2025-07-13 05:48:54.206 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:48:54.214 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - 200 null application/json; charset=utf-8 536.8538ms
+2025-07-13 05:49:31.949 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - null null
+2025-07-13 05:49:31.954 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:31.955 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:49:31.970 +01:00 [INF] recieve request to list users
+2025-07-13 05:49:31.970 +01:00 [INF] process find users
+2025-07-13 05:49:32.040 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+2025-07-13 05:49:32.042 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+ORDER BY `u`.`Email`
+LIMIT @__p_2 OFFSET @__p_1
+2025-07-13 05:49:32.043 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 05:49:32.044 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 88.6132ms
+2025-07-13 05:49:32.044 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:32.045 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - 200 null application/json; charset=utf-8 94.8911ms
+2025-07-13 05:49:33.577 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - null null
+2025-07-13 05:49:33.581 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:33.581 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:49:33.599 +01:00 [INF] recieve request to list users
+2025-07-13 05:49:33.599 +01:00 [INF] process find users
+2025-07-13 05:49:33.601 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+2025-07-13 05:49:33.602 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+ORDER BY `u`.`Email`
+LIMIT @__p_2 OFFSET @__p_1
+2025-07-13 05:49:33.604 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 05:49:33.607 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 26.3586ms
+2025-07-13 05:49:33.608 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:33.610 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo - 200 null application/json; charset=utf-8 33.8188ms
+2025-07-13 05:49:42.892 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=Admin%20 - null null
+2025-07-13 05:49:42.892 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:42.892 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:49:42.907 +01:00 [INF] recieve request to list users
+2025-07-13 05:49:42.907 +01:00 [INF] process find users
+2025-07-13 05:49:42.924 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 31.7245ms
+2025-07-13 05:49:42.925 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:42.934 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=Admin%20 - 500 null application/json 42.3244ms
+2025-07-13 05:49:47.544 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=1%20 - null null
+2025-07-13 05:49:47.545 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:47.545 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:49:47.561 +01:00 [INF] recieve request to list users
+2025-07-13 05:49:47.561 +01:00 [INF] process find users
+2025-07-13 05:49:47.565 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 19.2473ms
+2025-07-13 05:49:47.565 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:49:47.566 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&role=1%20 - 500 null application/json 21.6743ms
+2025-07-13 05:50:09.344 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&Role=Admin%20 - null null
+2025-07-13 05:50:09.344 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:50:09.344 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:50:09.359 +01:00 [INF] recieve request to list users
+2025-07-13 05:50:09.359 +01:00 [INF] process find users
+2025-07-13 05:50:09.362 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 17.05ms
+2025-07-13 05:50:09.362 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:50:09.363 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&Role=Admin%20 - 500 null application/json 19.5352ms
+2025-07-13 05:50:13.066 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&Role=1%20 - null null
+2025-07-13 05:50:13.067 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:50:13.067 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:50:13.081 +01:00 [INF] recieve request to list users
+2025-07-13 05:50:13.081 +01:00 [INF] process find users
+2025-07-13 05:50:13.084 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 17.0227ms
+2025-07-13 05:50:13.085 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:50:13.085 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?pageNumber=1&pageSize=5&search=Oladipupo&Role=1%20 - 500 null application/json 18.7779ms
+2025-07-13 05:54:14.722 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:54:14.724 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:54:14.724 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:54:14.856 +01:00 [INF] recieve request to list users
+2025-07-13 05:54:14.856 +01:00 [INF] process find users
+2025-07-13 05:54:14.859 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 18.827ms
+2025-07-13 05:54:14.860 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:54:14.860 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 139.1812ms
+2025-07-13 05:55:01.687 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:55:01.688 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:01.688 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:55:01.707 +01:00 [INF] recieve request to list users
+2025-07-13 05:55:01.707 +01:00 [INF] process find users
+2025-07-13 05:55:01.725 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+2025-07-13 05:55:01.727 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))
+ORDER BY `u`.`Email`
+LIMIT @__p_2 OFFSET @__p_1
+2025-07-13 05:55:01.728 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 05:55:01.728 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 39.5487ms
+2025-07-13 05:55:01.728 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:01.728 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 41.0042ms
+2025-07-13 05:55:13.575 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:55:13.575 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:13.576 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:55:13.590 +01:00 [INF] recieve request to list users
+2025-07-13 05:55:13.590 +01:00 [INF] process find users
+2025-07-13 05:55:13.592 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 16.313ms
+2025-07-13 05:55:13.592 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:13.593 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 18.2355ms
+2025-07-13 05:55:20.142 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:55:20.144 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:20.144 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:55:20.159 +01:00 [INF] recieve request to list users
+2025-07-13 05:55:20.159 +01:00 [INF] process find users
+2025-07-13 05:55:20.161 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 17.4472ms
+2025-07-13 05:55:20.162 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:55:20.162 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 20.6085ms
+2025-07-13 05:55:55.686 +01:00 [INF] Server news-macbook-pro:40909:942aa93e caught stopping signal...
+2025-07-13 05:55:55.688 +01:00 [INF] Application is shutting down...
+2025-07-13 05:55:55.688 +01:00 [INF] Server news-macbook-pro:40909:03aea40e caught stopping signal...
+2025-07-13 05:55:55.692 +01:00 [INF] Server news-macbook-pro:40909:942aa93e All dispatchers stopped
+2025-07-13 05:55:55.692 +01:00 [INF] Server news-macbook-pro:40909:03aea40e All dispatchers stopped
+2025-07-13 05:55:55.697 +01:00 [INF] Server news-macbook-pro:40909:942aa93e successfully reported itself as stopped in 2.2765 ms
+2025-07-13 05:55:55.697 +01:00 [INF] Server news-macbook-pro:40909:942aa93e has been stopped in total 10.0365 ms
+2025-07-13 05:55:55.698 +01:00 [INF] Server news-macbook-pro:40909:03aea40e successfully reported itself as stopped in 2.9825 ms
+2025-07-13 05:55:55.698 +01:00 [INF] Server news-macbook-pro:40909:03aea40e has been stopped in total 8.9924 ms
+2025-07-13 05:56:01.432 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:56:02.871 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:56:02.912 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:56:02.953 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:56:02.972 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:56:03.260 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:56:03.322 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:56:03.346 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:56:03.347 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:56:03.347 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:56:03.347 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:56:03.442 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:56:03.506 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:56:03.506 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:56:03.507 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:56:03.507 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:56:03.507 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:56:03.512 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:56:03.513 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:56:03.513 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:56:03.521 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 successfully announced in 156.7537 ms
+2025-07-13 05:56:03.524 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:56:03.529 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 all the dispatchers started
+2025-07-13 05:56:03.533 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 successfully announced in 24.9792 ms
+2025-07-13 05:56:03.781 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:56:03.795 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 all the dispatchers started
+2025-07-13 05:56:08.223 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:56:08.259 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:56:08.338 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:56:08.364 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:56:08.401 +01:00 [INF] recieve request to list users
+2025-07-13 05:56:08.402 +01:00 [INF] process find users
+2025-07-13 05:56:08.484 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 115.2717ms
+2025-07-13 05:56:08.485 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:56:08.561 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 335.2323ms
+2025-07-13 05:56:28.039 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 caught stopping signal...
+2025-07-13 05:56:28.043 +01:00 [INF] Application is shutting down...
+2025-07-13 05:56:28.043 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 caught stopping signal...
+2025-07-13 05:56:28.045 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 All dispatchers stopped
+2025-07-13 05:56:28.045 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 All dispatchers stopped
+2025-07-13 05:56:28.051 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 successfully reported itself as stopped in 3.7306 ms
+2025-07-13 05:56:28.051 +01:00 [INF] Server news-macbook-pro:41206:6ef7a448 has been stopped in total 8.055 ms
+2025-07-13 05:56:28.052 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 successfully reported itself as stopped in 4.511 ms
+2025-07-13 05:56:28.052 +01:00 [INF] Server news-macbook-pro:41206:6fea9a03 has been stopped in total 10.0098 ms
+2025-07-13 05:56:32.736 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:56:34.070 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:56:34.113 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:56:34.147 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:56:34.168 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:56:34.439 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:56:34.496 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:56:34.518 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:56:34.518 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:56:34.519 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:56:34.519 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:56:34.614 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:56:34.675 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:56:34.676 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:56:34.676 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:56:34.676 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:56:34.676 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:56:34.680 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:56:34.681 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:56:34.681 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:56:34.684 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 successfully announced in 147.4653 ms
+2025-07-13 05:56:34.688 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:56:34.695 +01:00 [INF] Server news-macbook-pro:41256:990201c5 successfully announced in 18.5011 ms
+2025-07-13 05:56:34.697 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 all the dispatchers started
+2025-07-13 05:56:34.698 +01:00 [INF] Server news-macbook-pro:41256:990201c5 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:56:34.780 +01:00 [INF] Server news-macbook-pro:41256:990201c5 all the dispatchers started
+2025-07-13 05:56:37.598 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:56:37.650 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:56:37.764 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:56:37.904 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:56:37.948 +01:00 [INF] recieve request to list users
+2025-07-13 05:56:37.949 +01:00 [INF] process find users
+2025-07-13 05:56:38.045 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 136.5741ms
+2025-07-13 05:56:38.046 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:56:38.139 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 538.421ms
+2025-07-13 05:56:57.224 +01:00 [INF] Server news-macbook-pro:41256:990201c5 caught stopping signal...
+2025-07-13 05:56:57.227 +01:00 [INF] Application is shutting down...
+2025-07-13 05:56:57.228 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 caught stopping signal...
+2025-07-13 05:56:57.231 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 All dispatchers stopped
+2025-07-13 05:56:57.231 +01:00 [INF] Server news-macbook-pro:41256:990201c5 All dispatchers stopped
+2025-07-13 05:56:57.239 +01:00 [INF] Server news-macbook-pro:41256:990201c5 successfully reported itself as stopped in 4.89 ms
+2025-07-13 05:56:57.239 +01:00 [INF] Server news-macbook-pro:41256:990201c5 has been stopped in total 12.0799 ms
+2025-07-13 05:56:57.241 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 successfully reported itself as stopped in 7.5882 ms
+2025-07-13 05:56:57.241 +01:00 [INF] Server news-macbook-pro:41256:c8198aa5 has been stopped in total 12.9293 ms
+2025-07-13 05:57:01.612 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:57:02.973 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:57:03.008 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:57:03.036 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:57:03.055 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:57:03.314 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:57:03.375 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:57:03.403 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:57:03.404 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:57:03.404 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:57:03.404 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:57:03.493 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:57:03.566 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:57:03.566 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:57:03.567 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:57:03.567 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:57:03.567 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:57:03.571 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:57:03.572 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:57:03.572 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:57:03.577 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 successfully announced in 155.1501 ms
+2025-07-13 05:57:03.580 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:57:03.586 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 all the dispatchers started
+2025-07-13 05:57:03.601 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 successfully announced in 33.3238 ms
+2025-07-13 05:57:03.612 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:57:03.686 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 all the dispatchers started
+2025-07-13 05:57:06.999 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:57:07.038 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:57:07.139 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:57:07.278 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:57:07.333 +01:00 [INF] recieve request to list users
+2025-07-13 05:57:07.334 +01:00 [INF] process find users
+2025-07-13 05:57:07.435 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 150.328ms
+2025-07-13 05:57:07.436 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:57:07.543 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 537.8876ms
+2025-07-13 05:57:26.478 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 caught stopping signal...
+2025-07-13 05:57:26.479 +01:00 [INF] Application is shutting down...
+2025-07-13 05:57:26.479 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 caught stopping signal...
+2025-07-13 05:57:26.483 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 All dispatchers stopped
+2025-07-13 05:57:26.484 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 All dispatchers stopped
+2025-07-13 05:57:26.491 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 successfully reported itself as stopped in 4.9292 ms
+2025-07-13 05:57:26.491 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 successfully reported itself as stopped in 5.1393 ms
+2025-07-13 05:57:26.491 +01:00 [INF] Server news-macbook-pro:41322:e01b7ce2 has been stopped in total 12.343 ms
+2025-07-13 05:57:26.491 +01:00 [INF] Server news-macbook-pro:41322:fbe2b252 has been stopped in total 11.7509 ms
+2025-07-13 05:57:32.546 +01:00 [INF] User Management Application is starting up
+2025-07-13 05:57:34.107 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:57:34.146 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 05:57:34.180 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 05:57:34.199 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 05:57:34.461 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 05:57:34.525 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 05:57:34.549 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:57:34.550 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:57:34.550 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:57:34.551 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:57:34.658 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 05:57:34.728 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 05:57:34.728 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 05:57:34.729 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 05:57:34.729 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 05:57:34.729 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 05:57:34.734 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 05:57:34.737 +01:00 [INF] Hosting environment: Development
+2025-07-13 05:57:34.737 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 05:57:34.744 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 successfully announced in 176.1976 ms
+2025-07-13 05:57:34.747 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:57:34.753 +01:00 [INF] Server news-macbook-pro:41383:494ed217 successfully announced in 23.9363 ms
+2025-07-13 05:57:34.754 +01:00 [INF] Server news-macbook-pro:41383:494ed217 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 05:57:34.812 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 all the dispatchers started
+2025-07-13 05:57:34.855 +01:00 [INF] Server news-macbook-pro:41383:494ed217 all the dispatchers started
+2025-07-13 05:57:37.521 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 05:57:37.560 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 05:57:37.644 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:57:37.670 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 05:57:37.708 +01:00 [INF] recieve request to list users
+2025-07-13 05:57:37.710 +01:00 [INF] process find users
+2025-07-13 05:57:37.795 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 120.4229ms
+2025-07-13 05:57:37.797 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 05:57:37.874 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 352.4472ms
+2025-07-13 06:00:16.284 +01:00 [INF] Server news-macbook-pro:41383:494ed217 caught stopping signal...
+2025-07-13 06:00:16.294 +01:00 [INF] Server news-macbook-pro:41383:494ed217 All dispatchers stopped
+2025-07-13 06:00:16.294 +01:00 [INF] Application is shutting down...
+2025-07-13 06:00:16.294 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 caught stopping signal...
+2025-07-13 06:00:16.296 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 All dispatchers stopped
+2025-07-13 06:00:16.301 +01:00 [INF] Server news-macbook-pro:41383:494ed217 successfully reported itself as stopped in 3.0837 ms
+2025-07-13 06:00:16.301 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 successfully reported itself as stopped in 3.1053 ms
+2025-07-13 06:00:16.301 +01:00 [INF] Server news-macbook-pro:41383:494ed217 has been stopped in total 15.0528 ms
+2025-07-13 06:00:16.301 +01:00 [INF] Server news-macbook-pro:41383:36c94a85 has been stopped in total 6.2272 ms
+2025-07-13 06:00:23.054 +01:00 [INF] User Management Application is starting up
+2025-07-13 06:00:24.336 +01:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 06:00:24.372 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 06:00:24.402 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 06:00:24.422 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 06:00:24.670 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 06:00:24.742 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 06:00:24.763 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 06:00:24.763 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 06:00:24.764 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 06:00:24.764 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 06:00:24.847 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 06:00:24.907 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 06:00:24.908 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 06:00:24.908 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 06:00:24.908 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 06:00:24.908 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 06:00:24.912 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 06:00:24.913 +01:00 [INF] Hosting environment: Development
+2025-07-13 06:00:24.913 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 06:00:24.915 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 successfully announced in 135.8789 ms
+2025-07-13 06:00:24.918 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 06:00:24.924 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 all the dispatchers started
+2025-07-13 06:00:24.925 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 successfully announced in 16.1205 ms
+2025-07-13 06:00:24.926 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 06:00:25.008 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 all the dispatchers started
+2025-07-13 06:00:28.507 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:00:28.543 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 06:00:28.622 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:00:28.648 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:00:28.687 +01:00 [INF] recieve request to list users
+2025-07-13 06:00:28.689 +01:00 [INF] process find users
+2025-07-13 06:00:28.766 +01:00 [ERR] Failed to count users
+System.InvalidOperationException: The LINQ expression 'DbSet<User>()
+    .Where(u => !(u.IsDeleted))
+    .Where(u => u.FirstName.ToLower().Contains(__name_0) || u.LastName.ToLower().Contains(__name_0))
+    .Where(u => u.Role.ToString().Equals(
+        value: __request_Role_1, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of method 'object.ToString' failed. If this method can be mapped to your custom function, see https://go.microsoft.com/fwlink/?linkid=2132413 for more information.
+Translation of the 'String.Equals' overload with a 'StringComparison' parameter is not supported by default. To opt-in to translations of methods with a 'StringComparison' parameter, call `EnableStringComparisonTranslations` on your MySQL specific 'DbContext' options. For general EF Core information about this error, see https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at UserRepository.GetUsersAsync(UserQueryParameters request) in /Users/laptop/Desktop/user_management_app/UserManagement.Infrastructure/Repository/UserRepository.cs:line 80
+2025-07-13 06:00:28.784 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 132.3425ms
+2025-07-13 06:00:28.785 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:00:28.866 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 500 null application/json 359.1528ms
+2025-07-13 06:04:26.806 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/servers - null null
+2025-07-13 06:04:26.928 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/servers - 200 null text/html 122.1818ms
+2025-07-13 06:04:27.446 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css182002077623521 - null null
+2025-07-13 06:04:27.475 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200396654630 - null null
+2025-07-13 06:04:27.481 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200396654630 - 200 null text/css 4.8541ms
+2025-07-13 06:04:27.487 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/js18200323766452 - null null
+2025-07-13 06:04:27.522 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css182002077623521 - 200 null text/css 76.1767ms
+2025-07-13 06:04:27.530 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/js18200323766452 - 200 null application/javascript 42.6122ms
+2025-07-13 06:04:30.523 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:04:30.589 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 66.5439ms
+2025-07-13 06:04:32.467 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 caught stopping signal...
+2025-07-13 06:04:32.468 +01:00 [INF] Application is shutting down...
+2025-07-13 06:04:32.468 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 caught stopping signal...
+2025-07-13 06:04:32.472 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 All dispatchers stopped
+2025-07-13 06:04:32.472 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 All dispatchers stopped
+2025-07-13 06:04:32.478 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 successfully reported itself as stopped in 4.1181 ms
+2025-07-13 06:04:32.478 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 successfully reported itself as stopped in 4.1222 ms
+2025-07-13 06:04:32.478 +01:00 [INF] Server news-macbook-pro:41642:9fcda127 has been stopped in total 9.4683 ms
+2025-07-13 06:04:32.478 +01:00 [INF] Server news-macbook-pro:41642:4ba9bc05 has been stopped in total 10.6097 ms
+2025-07-13 06:04:37.999 +01:00 [INF] User Management Application is starting up
+2025-07-13 06:04:39.246 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 06:04:39.280 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='UserManagementDb' AND TABLE_NAME='__EFMigrationsHistory';
+2025-07-13 06:04:39.309 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-07-13 06:04:39.329 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-07-13 06:04:39.570 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`Role` = 0)
+2025-07-13 06:04:39.626 +01:00 [INF] DB tables already exist. Exit install
+2025-07-13 06:04:39.647 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 06:04:39.647 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 06:04:39.648 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 06:04:39.648 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 06:04:39.727 +01:00 [INF] User profile is available. Using '/Users/laptop/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-13 06:04:39.786 +01:00 [INF] Now listening on: http://localhost:5104
+2025-07-13 06:04:39.786 +01:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@UserManagementDb'
+2025-07-13 06:04:39.786 +01:00 [INF] Using the following options for SQL Server job storage:
+2025-07-13 06:04:39.786 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-07-13 06:04:39.787 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-13 06:04:39.790 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-13 06:04:39.791 +01:00 [INF] Hosting environment: Development
+2025-07-13 06:04:39.791 +01:00 [INF] Content root path: /Users/laptop/Desktop/user_management_app/UserManagement.API
+2025-07-13 06:04:39.792 +01:00 [INF] Server news-macbook-pro:41924:8e212125 successfully announced in 128.4607 ms
+2025-07-13 06:04:39.796 +01:00 [INF] Server news-macbook-pro:41924:8e212125 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 06:04:39.801 +01:00 [INF] Server news-macbook-pro:41924:8e212125 all the dispatchers started
+2025-07-13 06:04:39.805 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 successfully announced in 17.6562 ms
+2025-07-13 06:04:39.816 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-13 06:04:39.882 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 all the dispatchers started
+2025-07-13 06:04:44.882 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:04:44.922 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-13 06:04:45.006 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:45.035 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:04:45.069 +01:00 [INF] recieve request to list users
+2025-07-13 06:04:45.070 +01:00 [INF] process find users
+2025-07-13 06:04:45.180 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE (NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)
+2025-07-13 06:04:45.226 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__p_3='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE (NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)
+ORDER BY `u`.`Email`
+LIMIT @__p_3 OFFSET @__p_2
+2025-07-13 06:04:45.300 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:04:45.396 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 357.2909ms
+2025-07-13 06:04:45.397 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:45.406 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=1&search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 524.1702ms
+2025-07-13 06:04:53.516 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:04:53.520 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:53.520 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:04:53.535 +01:00 [INF] recieve request to list users
+2025-07-13 06:04:53.535 +01:00 [INF] process find users
+2025-07-13 06:04:53.604 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE (NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)
+2025-07-13 06:04:53.607 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__p_3='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE (NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)
+ORDER BY `u`.`Email`
+LIMIT @__p_3 OFFSET @__p_2
+2025-07-13 06:04:53.609 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:04:53.609 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 88.8051ms
+2025-07-13 06:04:53.610 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:53.610 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 94.3477ms
+2025-07-13 06:04:57.683 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:04:57.690 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:57.691 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:04:57.713 +01:00 [INF] recieve request to list users
+2025-07-13 06:04:57.713 +01:00 [INF] process find users
+2025-07-13 06:04:57.723 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+2025-07-13 06:04:57.731 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32), @__p_4='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+ORDER BY `u`.`Email`
+LIMIT @__p_4 OFFSET @__p_3
+2025-07-13 06:04:57.732 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:04:57.732 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 41.0226ms
+2025-07-13 06:04:57.732 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:04:57.732 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 48.8974ms
+2025-07-13 06:05:14.269 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Inactive&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:05:14.270 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:05:14.270 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:05:14.283 +01:00 [INF] recieve request to list users
+2025-07-13 06:05:14.283 +01:00 [INF] process find users
+2025-07-13 06:05:14.285 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+2025-07-13 06:05:14.287 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32), @__p_4='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+ORDER BY `u`.`Email`
+LIMIT @__p_4 OFFSET @__p_3
+2025-07-13 06:05:14.287 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:05:14.287 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 17.2557ms
+2025-07-13 06:05:14.287 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:05:14.288 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Inactive&search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 18.5957ms
+2025-07-13 06:05:34.479 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/servers - null null
+2025-07-13 06:05:34.612 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/servers - 200 null text/html 132.7544ms
+2025-07-13 06:05:34.635 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css182001032746224 - null null
+2025-07-13 06:05:34.646 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200659477985 - null null
+2025-07-13 06:05:34.646 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/hangfire/js18200830784823 - null null
+2025-07-13 06:05:34.648 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css-dark18200659477985 - 200 null text/css 1.8256ms
+2025-07-13 06:05:34.652 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/css182001032746224 - 200 null text/css 16.2691ms
+2025-07-13 06:05:34.676 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/hangfire/js18200830784823 - 200 null application/javascript 29.8604ms
+2025-07-13 06:05:37.472 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:37.506 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 33.8806ms
+2025-07-13 06:05:40.472 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:40.480 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.5158ms
+2025-07-13 06:05:43.472 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:43.479 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.8263ms
+2025-07-13 06:05:46.471 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:46.476 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.4022ms
+2025-07-13 06:05:49.471 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:49.476 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 4.985ms
+2025-07-13 06:05:52.472 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:52.479 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.0469ms
+2025-07-13 06:05:55.470 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:55.476 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.4483ms
+2025-07-13 06:05:58.470 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:05:58.476 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.622ms
+2025-07-13 06:06:01.472 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:01.479 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.4616ms
+2025-07-13 06:06:04.421 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:04.437 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 16.1227ms
+2025-07-13 06:06:07.418 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:07.424 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.9327ms
+2025-07-13 06:06:10.417 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:10.423 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.8429ms
+2025-07-13 06:06:13.418 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:13.424 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.6747ms
+2025-07-13 06:06:16.417 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:16.423 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.0654ms
+2025-07-13 06:06:19.416 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:19.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.7879ms
+2025-07-13 06:06:22.417 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:22.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.7155ms
+2025-07-13 06:06:25.416 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:25.424 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 8.4574ms
+2025-07-13 06:06:28.416 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:28.425 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 9.0572ms
+2025-07-13 06:06:28.726 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=John&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:06:28.726 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:28.727 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:06:28.740 +01:00 [INF] recieve request to list users
+2025-07-13 06:06:28.740 +01:00 [INF] process find users
+2025-07-13 06:06:28.742 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+2025-07-13 06:06:28.744 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32), @__p_4='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+ORDER BY `u`.`Email`
+LIMIT @__p_4 OFFSET @__p_3
+2025-07-13 06:06:28.744 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:06:28.744 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 17.5658ms
+2025-07-13 06:06:28.745 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:28.746 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=John&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 19.7027ms
+2025-07-13 06:06:31.416 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:31.423 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.7189ms
+2025-07-13 06:06:34.415 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:34.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.668ms
+2025-07-13 06:06:35.550 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:06:35.551 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:35.551 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:06:35.565 +01:00 [INF] recieve request to list users
+2025-07-13 06:06:35.565 +01:00 [INF] process find users
+2025-07-13 06:06:35.567 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+2025-07-13 06:06:35.570 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32), @__p_4='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+ORDER BY `u`.`Email`
+LIMIT @__p_4 OFFSET @__p_3
+2025-07-13 06:06:35.571 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:06:35.571 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 20.3435ms
+2025-07-13 06:06:35.572 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:35.572 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Oladipupo&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 22.1613ms
+2025-07-13 06:06:37.417 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:37.423 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.5273ms
+2025-07-13 06:06:40.415 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:40.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.273ms
+2025-07-13 06:06:43.343 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Shofoluwe&pageNumber=1&pageSize=10 - null null
+2025-07-13 06:06:43.343 +01:00 [INF] Executing endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:43.343 +01:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsers(UserQueryParameters) on controller UsersController (UserManagement.API).
+2025-07-13 06:06:43.357 +01:00 [INF] recieve request to list users
+2025-07-13 06:06:43.357 +01:00 [INF] process find users
+2025-07-13 06:06:43.359 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+2025-07-13 06:06:43.360 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0_contains='?' (Size = 4000), @__parsedRole_1='?' (DbType = Int32), @__parsedStatus_2='?' (DbType = Int32), @__p_4='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`FirstName`, `u`.`IsDeleted`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`Role`, `u`.`Status`, `u`.`UpdatedAt`
+FROM `Users` AS `u`
+WHERE ((NOT (`u`.`IsDeleted`) AND ((LOWER(`u`.`FirstName`) LIKE @__name_0_contains) OR (LOWER(`u`.`LastName`) LIKE @__name_0_contains))) AND (`u`.`Role` = @__parsedRole_1)) AND (`u`.`Status` = @__parsedStatus_2)
+ORDER BY `u`.`Email`
+LIMIT @__p_4 OFFSET @__p_3
+2025-07-13 06:06:43.360 +01:00 [INF] Executing OkObjectResult, writing value of type 'UserManagement.Application.Common.Models.PaginatedResult`1[[UserManagement.Application.Common.Models.Auth.UserResponse, UserManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-13 06:06:43.360 +01:00 [INF] Executed action UsersController.GetUsers (UserManagement.API) in 16.8858ms
+2025-07-13 06:06:43.361 +01:00 [INF] Executed endpoint 'UsersController.GetUsers (UserManagement.API)'
+2025-07-13 06:06:43.361 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5104/api/users?role=Admin&status=Active&search=Shofoluwe&pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 17.9221ms
+2025-07-13 06:06:43.414 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:43.419 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 4.2319ms
+2025-07-13 06:06:46.417 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:46.424 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.6542ms
+2025-07-13 06:06:49.414 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:49.419 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.5286ms
+2025-07-13 06:06:52.415 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:52.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 6.5683ms
+2025-07-13 06:06:55.415 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:55.420 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.5777ms
+2025-07-13 06:06:58.415 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:06:58.422 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.1665ms
+2025-07-13 06:07:01.416 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:07:01.421 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 5.1811ms
+2025-07-13 06:07:04.413 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5104/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 167
+2025-07-13 06:07:04.420 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5104/hangfire/stats - 200 null application/json 7.1094ms
+2025-07-13 06:07:05.878 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 caught stopping signal...
+2025-07-13 06:07:05.879 +01:00 [INF] Application is shutting down...
+2025-07-13 06:07:05.879 +01:00 [INF] Server news-macbook-pro:41924:8e212125 caught stopping signal...
+2025-07-13 06:07:05.884 +01:00 [INF] Server news-macbook-pro:41924:8e212125 All dispatchers stopped
+2025-07-13 06:07:05.885 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 All dispatchers stopped
+2025-07-13 06:07:05.891 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 successfully reported itself as stopped in 3.5462 ms
+2025-07-13 06:07:05.891 +01:00 [INF] Server news-macbook-pro:41924:05ac99a0 has been stopped in total 12.1978 ms
+2025-07-13 06:07:05.892 +01:00 [INF] Server news-macbook-pro:41924:8e212125 successfully reported itself as stopped in 4.6844 ms
+2025-07-13 06:07:05.892 +01:00 [INF] Server news-macbook-pro:41924:8e212125 has been stopped in total 12.609 ms

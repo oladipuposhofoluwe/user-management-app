@@ -23,4 +23,13 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
+    [HttpGet]
+    [Authorize(Roles = "Admin,Staff")]
+    public async Task<IActionResult> GetUsers([FromQuery] UserQueryParameters parameters)
+    {
+        _logger.LogInformation("recieve request to list users");
+        var result = await _userService.GetUsersAsync(parameters);
+        return Ok(result);
+    }
+
 }
