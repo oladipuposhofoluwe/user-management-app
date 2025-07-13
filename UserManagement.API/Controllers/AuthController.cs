@@ -42,7 +42,7 @@ namespace UserManagement.API.Controllers
             var response = await _authService.RefreshTokenAsync(request.RefreshToken);
             return Ok(response);
         }
-    
+
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
@@ -58,6 +58,20 @@ namespace UserManagement.API.Controllers
 
             return Ok(new { message = "Logged out successfully." });
         }
+        
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        {
+            var userId = _currentUserService.UserId;
+
+            if (userId == null)
+                throw new UnauthorizedException("User is not authenticated.");
+
+            await _authService.ChangePasswordAsync(userId.Value, request);
+            return Ok("Password changed successfully.");
+        }
+
 
     }
 }

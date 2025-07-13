@@ -24,9 +24,7 @@ public class UsersController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> CreateUser([FromBody] RegisterRequest dto)
     {
-        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@ 1");
         _logger.LogInformation("recieve request to create user");
-
 
         if (!ModelState.IsValid)
         {
@@ -48,6 +46,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin,Staff")]
     public async Task<ActionResult<UserResponse>> GetUserById(Guid id)
     {
         _logger.LogInformation("recieve request to fetch user details");
@@ -57,7 +56,7 @@ public class UsersController : ControllerBase
 
     [Authorize(Roles = "Viewer")]
     [HttpPut("update")]
-    public async Task<IActionResult> UpdateUser(UpdateUserRequest request)
+    public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request)
     {
 
         if (_currentUserService.UserId is null)
