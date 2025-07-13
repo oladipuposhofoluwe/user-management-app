@@ -26,6 +26,8 @@ namespace UserManagement.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
+            _logger.LogInformation("recieve request to process login {@request}", request);
+
             var response = await _authService.LoginAsync(request);
             if (response == null)
             { 

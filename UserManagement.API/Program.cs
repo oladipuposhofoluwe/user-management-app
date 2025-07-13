@@ -7,9 +7,10 @@ using UserManagement.Infrastructure.Services;
 using UserManagement.Application.Interfaces.Services;
 using Serilog;
 using Hangfire;
-using Hangfire.MemoryStorage;
 using UserManagement.Domain.Entities;
 using Hangfire.MySql;
+using Infrastructure.Messaging;
+using Domain.Interfaces;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -53,7 +54,7 @@ try
 
     builder.Services.AddHangfireServer();
 
-    builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+    builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
     builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 
@@ -65,7 +66,7 @@ try
     })
     .AddJwtBearer(options =>
     {
-        var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+        var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -89,6 +90,9 @@ try
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped<IKafkaProducer, MockKafkaProducer>();
+
+
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
@@ -117,6 +121,8 @@ try
     app.UseAuthorization();
     app.UseHangfireDashboard();
     app.UseHangfireDashboard("/hangfire");
+    app.UseHangfireServer();
+
 
 
     app.MapControllers();

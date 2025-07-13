@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aVUZsTZ6QGo=",
+  "dgSpecHash": "SrgoVpK6h+A=",
   "success": true,
   "projectFilePath": "/Users/laptop/Desktop/user_management_app/UserManagement.API/UserManagement.API.csproj",
   "expectedPackageFiles": [
     "/Users/laptop/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/Users/laptop/.nuget/packages/confluent.kafka/2.11.0/confluent.kafka.2.11.0.nupkg.sha512",
     "/Users/laptop/.nuget/packages/dapper/1.50.5/dapper.1.50.5.nupkg.sha512",
     "/Users/laptop/.nuget/packages/fluentassertions/4.1.0/fluentassertions.4.1.0.nupkg.sha512",
     "/Users/laptop/.nuget/packages/hangfire/1.8.20/hangfire.1.8.20.nupkg.sha512",
@@ -16,6 +17,7 @@
     "/Users/laptop/.nuget/packages/hangfire.netcore/1.8.20/hangfire.netcore.1.8.20.nupkg.sha512",
     "/Users/laptop/.nuget/packages/hangfire.sqlserver/1.8.20/hangfire.sqlserver.1.8.20.nupkg.sha512",
     "/Users/laptop/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/laptop/.nuget/packages/librdkafka.redist/2.11.0/librdkafka.redist.2.11.0.nupkg.sha512",
     "/Users/laptop/.nuget/packages/linq2db/0.0.1/linq2db.0.0.1.nupkg.sha512",
     "/Users/laptop/.nuget/packages/linq2db.mysql/1.0.7.3/linq2db.mysql.1.0.7.3.nupkg.sha512",
     "/Users/laptop/.nuget/packages/linq2db.t4models/0.0.1/linq2db.t4models.0.0.1.nupkg.sha512",
