@@ -14,6 +14,7 @@ using Domain.Interfaces;
 using Hangfire.MemoryStorage;
 using Application.Common.Interfaces;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -35,7 +36,6 @@ try
             ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
         ));
 
-    builder.Services.AddHangfire(config => config.UseMemoryStorage());
 
     builder.Services.AddScoped<IBackgroundJobService, BackgroundJobService>();
 
@@ -53,12 +53,13 @@ try
                  }));
      });
 
-
+    builder.Services.AddHangfire(config => config.UseMemoryStorage());
     builder.Services.AddHangfireServer();
+    builder.Services.AddScoped<IUserDeactivationJob, UserDeactivationJob>();
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
     builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-
 
     builder.Services.AddAuthentication(options =>
     {
@@ -88,7 +89,6 @@ try
 
     });
     builder.Services.AddHttpContextAccessor();
-    builder.Services.AddScoped<IEmailService, EmailService>();
     builder.Services.AddDbContext<AppDbContext>();
     builder.Services.AddSwaggerGen();
     builder.Services.AddEndpointsApiExplorer();
@@ -101,16 +101,13 @@ try
     builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
     builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
     builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<IPasswordService, PasswordService>();
+    builder.Services.AddScoped<IEmailService, EmailService>();
+
     builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-
-
-
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
-
     builder.Services.AddAuthorization();
-
 
     var app = builder.Build();
 
@@ -131,7 +128,21 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
     app.UseHangfireDashboard("/hangfire");
-    app.UseHangfireServer();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+
+        recurringJobManager.AddOrUpdate<IUserDeactivationJob>(
+            recurringJobId: "",
+            methodCall: job => job.DeactivateInactiveUsersAsync(),
+            cronExpression: "0 0 * * *",
+            options: new RecurringJobOptions
+            {
+                TimeZone = TimeZoneInfo.Utc
+            }
+        );
+    }
     app.MapControllers();
 
     app.Run();

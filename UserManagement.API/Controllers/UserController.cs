@@ -54,7 +54,6 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [Authorize(Roles = "Viewer")]
     [HttpPut("update")]
     public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request)
     {
@@ -85,7 +84,6 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    [Authorize(Roles = "Viewer")]
     [HttpPatch("viewer/deactivate")]
     [Authorize]
     public async Task<IActionResult> SelfDeactivate()

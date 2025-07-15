@@ -60,17 +60,17 @@ namespace UserManagement.API.Controllers
         }
         
 
-        [HttpPost("change-password")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
-        {
-            var userId = _currentUserService.UserId;
+        // [HttpPost("change-password")]
+        // public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        // {
+        //     var userId = _currentUserService.UserId;
 
-            if (userId == null)
-                throw new UnauthorizedException("User is not authenticated.");
+        //     if (userId == null)
+        //         throw new UnauthorizedException("User is not authenticated.");
 
-            await _authService.ChangePasswordAsync(userId.Value, request);
-            return Ok("Password changed successfully.");
-        }
+        //     await _authService.ChangePasswordAsync(userId.Value, request);
+        //     return Ok("Password changed successfully.");
+        // }
 
 
     }
