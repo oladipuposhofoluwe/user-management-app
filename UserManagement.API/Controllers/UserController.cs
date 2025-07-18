@@ -59,9 +59,8 @@ public class UsersController : ControllerBase
     {
 
         if (_currentUserService.UserId is null)
-        {
-            throw new UnauthorizedException("Unathurize");
-        }
+            throw new UnauthorizedException("Unathourize");
+        
 
         _logger.LogInformation("recieve request to update user profile");
         await _userService.UpdateUserAsync(_currentUserService.UserId.Value, request);

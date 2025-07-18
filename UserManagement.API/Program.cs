@@ -89,11 +89,6 @@ try
 
     });
     builder.Services.AddHttpContextAccessor();
-    builder.Services.AddDbContext<AppDbContext>();
-    builder.Services.AddSwaggerGen();
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddAuthentication();
-    builder.Services.AddAuthorization();
     builder.Services.AddScoped<IPasswordHash, PasswordHash>();
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IUserService, UserService>();
